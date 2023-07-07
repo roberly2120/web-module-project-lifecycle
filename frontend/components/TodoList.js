@@ -1,24 +1,32 @@
-// import React from 'react'
-// import Todo from './Todo';
+import React from 'react'
+import Todo from './Todo';
 
 
-// export default class TodoList extends React.Component {
-//   constructor() {
-//     super();
+export default class TodoList extends React.Component {
+  constructor() {
+    super();
 
-//   }
+  }
   
 
 
-//   render() {
-//     return (
-//       <div>
-//       <h2>Todo List</h2>
-//       {this.props.todos.map((todo, index) => {
-//         return <Todo handleClick={this.props.handleClick} key={index} name={todo.name} id={todo.id}/>
-//       })}
-//       </div>
-      
-//     )
-//   }
-// }
+  render() {
+    return (
+      <div id="todos">
+        <h2>Todos:</h2>
+        {
+          this.props.todos.reduce((accumulator, todo) => {
+            if (this.props.displayCompleted || !todo.completed) return accumulator.concat(
+              <Todo
+                key={todo.id}
+                toggleComplete={this.props.toggleComplete}
+                todo={todo}
+              />
+            )
+            return accumulator
+          }, [])
+        }
+      </div>
+    )
+  }
+}

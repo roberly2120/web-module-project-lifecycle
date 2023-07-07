@@ -1,19 +1,18 @@
-// import React from 'react'
+import React from 'react'
 
-// export default class Todo extends React.Component {
-//   constructor () {
-//     super();
+export default class Todo extends React.Component {
+  constructor() {
+    super();
 
-//   }
-//   // componentDidUpdate() {
-//   //   console.log('updated')
-//   // }
-//   render() {
-//     return (
-//       <div className="todo_div" onClick={this.props.handleClick}>
-//       <p id={this.props.id}>{this.props.name}</p>
-//       <p>{this.props.completed ? "check" : "no check"}</p>
-//       </div>
-//     )
-//   }
-// }
+  }
+  // componentDidUpdate() {
+  //   console.log('updated')
+  // }
+  render() {
+    return (
+      <div onClick={this.props.toggleComplete(this.props.todo.id)}>
+        {this.props.todo.name} {this.props.todo.completed ? "✔️" : ""}
+      </div>
+    )
+  }
+}

@@ -1,29 +1,38 @@
-// import React from 'react'
-// import axios from 'axios';
+import React from 'react'
+import axios from 'axios';
 
 
-// export default class Form extends React.Component {
-//   constructor() {
-//     super();
+export default class Form extends React.Component {
+  constructor() {
+    super();
 
-//   }
-
-
+  }
 
 
-//   render() {
-//     return (
-//       <form className='form_div' onSubmit={this.props.handleSubmit}>
-//       <input
-//       value={this.props.inputValue}
-//       // onChange={(e) => this.setState({inputValue: e.target.value})}
-//       onChange={this.onInputChange}
-//       placeholder='Enter Task'
-//       />
-//       <button>Add Todo</button>
-//       <button onClick={this.props.handleClear}>Clear Completed</button>
-      
-//       </form>
-//     )
-//   }
-// }
+
+
+  render() {
+    return (
+      <>
+        <form
+          id="todoForm"
+          onSubmit={this.props.handleSubmit}>
+          <input
+            onChange={this.props.onInputChange}
+            value={this.props.inputValue}
+            type="text"
+            placeholder="Type Todo">
+          </input>
+          <input
+            type="submit">
+          </input>
+        </form>
+        <button
+          onClick={this.props.toggleDisplayCompleted}
+        >
+          {this.props.displayCompleted ? "Hide" : "Show"} Completed
+        </button>
+      </>
+    )
+  }
+}
