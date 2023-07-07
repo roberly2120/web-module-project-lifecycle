@@ -83,3 +83,17 @@ ul, form {
 .todo:hover {
   cursor: pointer;
 }
+.app{
+  display: flex;
+  flex-direction: column;
+}
+#clear_button {
+  margin-top: 5px;
+}
+.form_div {
+  margin-top: 5px;
+}
+.todo_div {
+  display: flex;
+  justify-content: space-between;
+}
