@@ -34,6 +34,8 @@ export default class App extends React.Component {
     axios.post(URL, { name: this.state.inputValue })
     .then(res => 
       this.setState({...this.state, todos: this.state.todos.concat(res.data.data)})
+      //not quite sure why this functions any differently than just getTodos();
+      //more efficient to not run a second axios request. front end surgery 
       )
     .catch(err => console.error(err))
   }
@@ -41,6 +43,24 @@ export default class App extends React.Component {
     evt.preventDefault()
     this.addTask()
     this.resetForm()
+  }
+  toggleComplete = id => () => {
+    axios.patch(`${URL}/${id}`)
+    .then(res => {
+      this.setState({
+        ...this.state, todos: this.state.todos.map(todo => {
+        if(todo.id !== id) {
+          return todo
+        }
+        else{
+          return res.data.data
+        }
+        })
+      })
+    })
+    .catch(err => {
+      debugger
+    })
   }
   // // handleClick = (evt) => {
   // //   console.log(evt.target.id)
@@ -88,7 +108,7 @@ export default class App extends React.Component {
           <h2>Todos:</h2>
             {
               this.state.todos.map(todo => {
-                return <li>{todo.name} {todo.completed ? "true" : "false"}</li>
+                return <div onClick={this.toggleComplete(todo.id)}>{todo.name} {todo.completed ? "✔️" : "❌"}</div>
               })
             }
         </div>
@@ -108,4 +128,4 @@ export default class App extends React.Component {
       </div>
     )
   }
-}
+  }
